@@ -28,11 +28,20 @@ Node *convertArr2Dll(vector<int> arr){
         prevNode =temp;
     }
     return head;
-
 }
+    
+Node *deleteHead(Node *head){
+    Node* temp = head ;
+    head = head-> next ;
+    head -> back = NULL ;
+    delete temp ;
+    return head ;
+}
+
 int main(){
     vector<int> arr = {1,2,3,4,5};
     Node *head = convertArr2Dll(arr);
+    head = deleteHead(head) ;
 
     Node *temp =head;
     while(temp){
