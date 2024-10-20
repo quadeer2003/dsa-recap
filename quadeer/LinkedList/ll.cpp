@@ -8,7 +8,6 @@ struct Node {
     next = NULL;
   }
 }; 
-
     Node *insertAtEnd(Node *head, int x) {
         if (head == NULL) {
             return new Node(x);
@@ -21,7 +20,6 @@ struct Node {
         temp->next = newNode;
         return head;
     }
-
     Node *deleteNode(Node *head, int k){
         if(head==NULL) return NULL;
         if(k==1){
@@ -48,18 +46,35 @@ struct Node {
         }
         return head;
     }
-
-
+    Node *insertAtFirst(Node *head , int val){
+        Node *newNode = new Node(val) ;
+        newNode->next = head ;
+        head = newNode ;
+        return head ;
+    }
+    Node *insertMid(Node *head , int val , int pos){
+        Node *newNode = new Node(val) ;
+        Node *temp = head ;
+        int c = 0 ;
+        while(temp!=NULL){
+            c++ ;
+            if(c==pos-1){
+                newNode->next = temp->next ;
+                temp->next = newNode ;
+            }
+            temp = temp->next ;
+        }
+        return head ;
+    }
 int main(){
     // Create a linked list and insert elements
     Node *head = new Node(1);
     head =insertAtEnd(head, 2);
     head =insertAtEnd(head, 3);
     head =insertAtEnd(head, 4);
-
-
     head = deleteNode(head,3);
-
+    head = insertAtFirst(head,61) ;
+    head = insertMid(head,64,2) ;
     // Function to print the linked list
     auto printList = [](Node *head) {
         Node *temp = head;
@@ -69,7 +84,6 @@ int main(){
         }
         cout << endl;
     };
-
     // Print the linked list
     printList(head);
 }
